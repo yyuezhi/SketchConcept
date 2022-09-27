@@ -1,0 +1,3 @@
+[submodule "SketchGraphs"]
+	path = SketchGraphs
+	url = https://github.com/PrincetonLIPS/SketchGraphs.git

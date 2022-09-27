@@ -1,0 +1,192 @@
+{
+  "description": "Experiment about detach param and type ",
+  "seed": 8,
+  "exp_name": "sample_exp",
+  "param_code_flag": false,
+  "constraint_param_flag" : false,
+  "EmbeddingStructure": {
+    "local_posi_max_length": 10,
+    "global_posi_max_length": 50,
+    "local_component_max_length": 4,
+    "max_primitive_num": 16,
+    "max_detection_query": 5,
+    "key_dim": [
+      256,
+      256
+    ],
+    "ref_in_argument_num": 2,
+    "ref_out_argument_num": 2,
+    "max_abstruction_decompose_query": 12,
+    "num_library": 1000,
+    "type_schema": {
+      "Line": [
+        "construction_flag",
+        "coordinate",
+        "coordinate",
+        "coordinate",
+        "coordinate"
+      ],
+      "Point": [
+        "construction_flag",
+        "coordinate",
+        "coordinate"
+      ],
+      "Circle": [
+        "construction_flag",
+        "coordinate",
+        "coordinate",
+        "length"
+      ],
+      "Arc": [
+        "construction_flag",
+        "coordinate",
+        "coordinate",
+        "length",
+        "angle",
+        "angle"
+      ],
+      "Coincident": [
+        "pointer",
+        "pointer"
+      ],
+      "Distance": [
+        "length",
+        "pointer",
+        "pointer"
+      ],
+      "Horizontal": [
+        "pointer_valid",
+        "pointer"
+      ],
+      "Parallel": [
+        "pointer",
+        "pointer"
+      ],
+      "Vertical": [
+        "pointer_valid",
+        "pointer"
+      ],
+      "Tangent": [
+        "pointer",
+        "pointer"
+      ],
+      "Length": [
+        "length",
+        "pointer"
+      ],
+      "Perpendicular": [
+        "pointer",
+        "pointer"
+      ],
+      "Midpoint": [
+        "pointer",
+        "pointer"
+      ],
+      "Equal": [
+        "pointer",
+        "pointer"
+      ],
+      "Diameter": [
+        "length",
+        "pointer"
+      ],
+      "Radius": [
+        "length",
+        "pointer"
+      ],
+      "Angle": [
+        "angle",
+        "pointer",
+        "pointer"
+      ],
+      "Concentric": [
+        "pointer",
+        "pointer"
+      ],
+      "Normal": [
+        "pointer",
+        "pointer"
+      ]
+    }
+  },
+  "batch_size": 80,
+  "validation_batch_size": 50,
+  "num_workers": 0,
+  "NumEpochs": 160,
+  "SnapshotFrequency": 20,
+  "validate_freq": 5,
+  "code_regulation": false,
+  "visualize_batch":10,
+  "validity_flag": false,
+  "param_code_encoding_ratio": 10,
+  "moving_avg_library_update": {
+    "update_momentum": 0.98,
+    "update_flag": true,
+    "mass_init": 0,
+    "laplace_smoothing": true
+  },
+  "dead_code_retrival": {
+    "flag": true,
+    "starting_epoch": 10,
+    "batch_freq": 10,
+    "stop_num": 2,
+    "code_retrival_size": 5,
+    "code_retrival_threshold": 3
+  },
+  "NetworkSpecs": {
+    "reference_FC_layer": 3,
+    "type_FC_layer": 4,
+    "atten_head_num": 8,
+    "normalize_before": true,
+    "activation": "relu",
+    "detection_embedding_dim": 256,
+    "recon_embedding_dim": 256,
+    "dropout": 0,
+    "num_encoder_layers": 6,
+    "num_detection_decoder_layers": 6,
+    "feedforward_dim": 256,
+    "mid_fc_layers": 3,
+    "num_parameter_decoder_layers": 4,
+    "num_structual_decoder_layers": 4,
+    "end_FC_layer": 2
+  },
+  "Loss": {
+    "code_regulation_weight": 0.0001,
+    "type_ratio": 20,
+    "cost_matrix_reference_loss_ratio": 1,
+    "correspondance_reference_loss_ratio":20,
+    "non_type_loss_ratio": 20,
+    "commitment_ratio": 1,
+    "validity_ratio": 0,
+    "param_ratio": 50,
+    "param_code_ratio": 0.1,
+    "ref_bia_ratio":25
+  },
+  "optimizer": {
+    "optimizer_type": "ADAM",
+    "base_lr": 0.0001,
+    "learning_rate_decay": 0.99,
+    "clip_gradient": true,
+    "gradient_clip_value": 1
+  },
+  "train_data": {
+    "dataset_size": 100000
+  },
+  "test_data": {
+    "dataset_size": 1000
+  },
+  "param_model": {
+    "arch": {
+      "encoderFClayers": 4,
+      "decoderFClayers": 1,
+      "attributeFClayers": 2,
+      "bottle_neck_dim": 256,
+      "encoding_dim": 80
+    },
+    "embeded": {
+      "angle_quantization": 30,
+      "length_quantization": 20,
+      "coordinate_quantization": 80
+    }
+  }
+}
